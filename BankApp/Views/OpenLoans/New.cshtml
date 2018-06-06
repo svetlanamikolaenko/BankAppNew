@@ -1,0 +1,45 @@
+﻿@model BankApp.ViewModels.OpenLoanFormViewModel
+@{
+    ViewBag.Title = "Loan Opening";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Loan Opening</h2>
+
+@using (Html.BeginForm("Save", "OpenLoans"))
+{
+    @Html.ValidationSummary(true, "Please, fill in the following required fields.")
+    <div class="form-group">
+        <label>Name</label>
+        @Html.DropDownListFor(o => o.OpenLoan.LoanId, new SelectList(Model.Loan, "Id", "Name"), "Select Name", new { @class = "form-control" })
+        @Html.ValidationMessageFor(o => o.OpenLoan.LoanId)
+    </div>
+    <div class="form-group">
+        <label>Period</label>
+        @Html.DropDownListFor(o => o.OpenLoan.LoanId, new SelectList(Model.Loan, "Id", "Period"), "Select Period", new { @class = "form-control" })
+        @Html.ValidationMessageFor(o => o.OpenLoan.LoanId)
+    </div>
+    <div class="form-group">
+        <label>Procent</label>
+        @Html.DropDownListFor(o => o.OpenLoan.LoanId, new SelectList(Model.Loan, "Id", "Procent"), "Select Procent", new { @class = "form-control" })
+        @Html.ValidationMessageFor(o => o.OpenLoan.LoanId)
+    </div>
+    <div class="form-group">
+        <label>Client</label>
+        @Html.DropDownListFor(o => o.OpenLoan.ClientId, new SelectList(Model.Client, "Id", "FullName"), "Select Client", new { @class = "form-control" })
+        @Html.ValidationMessageFor(o => o.OpenLoan.ClientId)
+    </div>
+    <div class="form-group">
+        <label>Amount</label>
+        @Html.TextBoxFor(o => o.OpenLoan.Amount, new { @class = "form-control" })
+        @Html.ValidationMessageFor(o => o.OpenLoan.Amount)
+    </div>
+    @Html.HiddenFor(o => o.Id)
+    @Html.AntiForgeryToken()
+    <button type="submit" class="btn btn-primary">Save</button>
+}
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}

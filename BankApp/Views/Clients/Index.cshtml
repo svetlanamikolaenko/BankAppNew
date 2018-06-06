@@ -1,0 +1,65 @@
+﻿@model IEnumerable<BankApp.Models.Client>
+@{
+    ViewBag.Title = "Clients";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Clients</h2>
+<a class="btn btn-primary" href="/Clients/New" role="button">New Client</a>
+<br>
+<br>
+<table id="clients" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Client</th>
+            <th>Manager</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            var table = $("#clients").DataTable({
+                ajax: {
+                    url: "/api/clients",
+                    dataSrc: ""
+                },
+                columns: [
+                    {
+                        data: "fullName",
+                        render: function (data, type, client) {
+                            return "<a href='/clients/edit/" + client.id + "'>" + data + "</a>";
+                        }
+                    },
+                    {
+                        data: "manager.fullName"
+                    },
+                    {
+                        data: "id",
+                        render: function(data) {
+                            return "<button class='btn-link js-delete' data-client-id=" + data + ">Delete</button>";
+                        }
+                    }
+                ]
+            });
+
+            $("#clients").on("click", ".js-delete", function () {
+                var button = $(this);
+
+                bootbox.confirm("Are you sure you want to delete this client?", function (result) {
+                    if (result) {
+                        $.ajax({
+                            url: "/api/clients/" + button.attr("data-client-id"),
+                            method: "DELETE",
+                            success: function () {
+                                table.row(button.parents("tr")).remove().draw();
+                            }
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+}

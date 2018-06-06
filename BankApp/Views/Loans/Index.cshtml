@@ -1,0 +1,46 @@
+﻿@model IEnumerable<BankApp.Models.Loan>
+@{
+    ViewBag.Title = "Loans";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Loans</h2>
+<a class="btn btn-primary" href="/Loans/New" role="button">New Loan</a>
+<br>
+<br>
+<table id="loans" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Loan</th>
+            <th>Period</th>
+            <th>Procent</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            var table = $("#loans").DataTable({
+                ajax: {
+                    url: "/api/loans",
+                    dataSrc: ""
+                },
+                columns: [
+                    {
+                        data: "name",
+                        render: function (data, type, loan) {
+                            return "<a href='/loans/edit/" + loan.id + "'>" + data + "</a>";
+                        }
+                    },
+                    {
+                        data: "period"
+                    },
+                    {
+                        data: "procent"
+                    }
+                ]
+            });
+        });
+    </script>
+}

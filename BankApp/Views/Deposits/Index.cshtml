@@ -1,0 +1,46 @@
+﻿@model IEnumerable<BankApp.Models.Loan>
+@{
+    ViewBag.Title = "Deposits";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Deposits</h2>
+<a class="btn btn-primary" href="/Deposits/New" role="button">New Deposit</a>
+<br>
+<br>
+<table id="deposits" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Deposit</th>
+            <th>Period</th>
+            <th>Procent</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            var table = $("#deposits").DataTable({
+                ajax: {
+                    url: "/api/deposits",
+                    dataSrc: ""
+                },
+                columns: [
+                    {
+                        data: "name",
+                        render: function (data, type, deposit) {
+                            return "<a href='/deposits/edit/" + deposit.id + "'>" + data + "</a>";
+                        }
+                    },
+                    {
+                        data: "period"
+                    },
+                    {
+                        data: "procent"
+                    }
+                ]
+            });
+        });
+    </script>
+}

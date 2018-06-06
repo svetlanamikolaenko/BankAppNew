@@ -1,0 +1,26 @@
+﻿<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            @Html.ActionLink("BankApp", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li>@Html.ActionLink("Managers", "Index", "Managers")</li>
+                <li>@Html.ActionLink("Clients", "Index", "Clients")</li>
+                <li>@Html.ActionLink("Loans", "Index", "Loans")</li>
+                <li>@Html.ActionLink("Deposits", "Index", "Deposits")</li>
+                <li>@Html.ActionLink("Open Loan", "Index", "OpenLoans")</li>
+                <li>@Html.ActionLink("Open Deposit", "Index", "OpenDeposits")</li>
+                <li>@Html.ActionLink("About", "About", "Home")</li>
+            </ul>
+            @Html.Partial("_LoginPartial")
+        </div>
+    </div>
+</div>
+
+

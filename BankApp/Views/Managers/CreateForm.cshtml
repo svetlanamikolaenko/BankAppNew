@@ -1,0 +1,25 @@
+﻿@model BankApp.ViewModels.ManagerFormViewModel
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Manager</h2>
+
+@using (Html.BeginForm("Save", "Managers"))
+{
+    <div class="form-group">
+        <label>First Name</label>
+        @Html.TextBoxFor(m => m.Manager.FirstName, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        <label>Last Name</label>
+        @Html.TextBoxFor(m => m.Manager.LastName, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        <label>Role Type</label>
+        @Html.DropDownListFor(m => m.Manager.RoleId , new SelectList(Model.Role, "Id", "Name"), "Select Role Type", new { @class = "form-control" })
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+}

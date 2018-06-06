@@ -1,0 +1,35 @@
+﻿@model BankApp.ViewModels.LoanFormViewModel
+@{
+    ViewBag.Title = "Loan";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Loan</h2>
+
+@using (Html.BeginForm("Save", "Loans"))
+{
+    @Html.ValidationSummary(true, "Please, fill in the following required fields.")
+    <div class="form-group">
+        @Html.LabelFor(l => l.Loan.Name)
+        @Html.TextBoxFor(l => l.Loan.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(l => l.Loan.Name)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(l => l.Loan.Period)
+        @Html.TextBoxFor(l => l.Loan.Period, new { @class = "form-control" })
+        @Html.ValidationMessageFor(l => l.Loan.Period)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(l => l.Loan.Procent)
+        @Html.TextBoxFor(l => l.Loan.Procent, new { @class = "form-control" })
+        @Html.ValidationMessageFor(l => l.Loan.Procent)
+    </div>
+    @Html.HiddenFor(l => l.Loan.Id)
+    @Html.AntiForgeryToken()
+    <button type="submit" class="btn btn-primary">Save</button>
+}
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}

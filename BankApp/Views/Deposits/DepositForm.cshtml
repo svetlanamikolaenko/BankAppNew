@@ -1,0 +1,35 @@
+﻿@model BankApp.ViewModels.DepositFormViewModel
+@{
+    ViewBag.Title = "Deposit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Deposit</h2>
+
+@using (Html.BeginForm("Save", "Deposits"))
+{
+    @Html.ValidationSummary(true, "Please, fill in the following required fields.")
+    <div class="form-group">
+        @Html.LabelFor(d => d.Deposit.Name)
+        @Html.TextBoxFor(d => d.Deposit.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(d => d.Deposit.Name)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(d => d.Deposit.Period)
+        @Html.TextBoxFor(d => d.Deposit.Period, new { @class = "form-control" })
+        @Html.ValidationMessageFor(d => d.Deposit.Period)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(d => d.Deposit.Procent)
+        @Html.TextBoxFor(d => d.Deposit.Procent, new { @class = "form-control" })
+        @Html.ValidationMessageFor(d => d.Deposit.Procent)
+    </div>
+    @Html.HiddenFor(d => d.Deposit.Id)
+    @Html.AntiForgeryToken()
+    <button type="submit" class="btn btn-primary">Save</button>
+}
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}

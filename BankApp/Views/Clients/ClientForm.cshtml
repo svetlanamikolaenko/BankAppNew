@@ -1,0 +1,35 @@
+﻿@model BankApp.ViewModels.ClientFormViewModel
+@{
+    ViewBag.Title = "Client";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Client</h2>
+
+@using (Html.BeginForm("Save", "Clients"))
+{
+    @Html.ValidationSummary(true, "Please, fill in the following required fields.")
+    <div class="form-group">
+        <label>First Name</label>
+        @Html.TextBoxFor(c => c.Client.FirstName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(c => c.Client.FirstName)
+    </div>
+    <div class="form-group">
+        <label>Last Name</label>
+        @Html.TextBoxFor(c => c.Client.LastName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(c => c.Client.LastName)
+    </div>
+    <div class="form-group">
+        <label>Manager</label>
+        @Html.DropDownListFor(c => c.Client.ManagerId, new SelectList(Model.Manager, "Id", "FullName"), "Select Manager", new { @class = "form-control" })
+        @Html.ValidationMessageFor(c => c.Client.ManagerId)
+    </div>
+    @Html.HiddenFor(c => c.Client.Id)
+    @Html.AntiForgeryToken()
+    <button type="submit" class="btn btn-primary">Save</button>
+}
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}
