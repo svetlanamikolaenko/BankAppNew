@@ -1,0 +1,69 @@
+﻿@model IEnumerable<BankApp.Models.Loan>
+@{
+    ViewBag.Title = "Deposits";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Deposits</h2>
+<a class="btn btn-primary" href="/Deposits/New" role="button">New Deposit</a>
+<br>
+<br>
+<table id="deposits" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Deposit</th>
+            <th>Period</th>
+            <th>Procent</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            var table = $("#deposits").DataTable({
+                ajax: {
+                    url: "/api/deposits",
+                    dataSrc: ""
+                },
+                columns: [
+                    {
+                        data: "name",
+                        render: function (data, type, deposit) {
+                            return "<a href='/deposits/edit/" + deposit.id + "'>" + data + "</a>";
+                        }
+                    },
+                    {
+                        data: "period"
+                    },
+                    {
+                        data: "procent"
+                    },
+                    {
+                        data: "id",
+                        render: function(data) {
+                            return "<button class='btn-link js-delete' data-deposit-id=" + data + ">Delete</button>";
+                        }
+                    }
+                ]
+            });
+
+            $("#deposits").on("click", ".js-delete", function () {
+                var button = $(this);
+
+                bootbox.confirm("Are you sure you want to delete this deposit?", function (result) {
+                    if (result) {
+                        $.ajax({
+                            url: "/api/deposits/" + button.attr("data-deposit-id"),
+                            method: "DELETE",
+                            success: function () {
+                                table.row(button.parents("tr")).remove().draw();
+                            }
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+}

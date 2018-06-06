@@ -264,6 +264,10 @@
     <Compile Include="Migrations\201806051903538_openDeposit.Designer.cs">
       <DependentUpon>201806051903538_openDeposit.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806061744064_SeedUsers.cs" />
+    <Compile Include="Migrations\201806061744064_SeedUsers.Designer.cs">
+      <DependentUpon>201806061744064_SeedUsers.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Base.cs" />
@@ -549,15 +553,13 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_NavBar.cshtml" />
-    <Content Include="Views\Managers\Random.cshtml" />
-    <Content Include="Views\Managers\Index.cshtml" />
-    <Content Include="Views\Managers\Details.cshtml" />
+    <Content Include="Views\Managers\List.cshtml" />
     <Content Include="Views\Managers\ManagerForm.cshtml" />
     <Content Include="Views\Managers\CreateForm.cshtml" />
-    <Content Include="Views\Clients\Index.cshtml" />
+    <Content Include="Views\Clients\List.cshtml" />
     <Content Include="Views\Clients\Details.cshtml" />
     <Content Include="Views\Clients\ClientForm.cshtml" />
-    <Content Include="Views\Loans\Index.cshtml" />
+    <Content Include="Views\Loans\List.cshtml" />
     <Content Include="Views\Loans\LoanForm.cshtml" />
     <Content Include="Views\OpenLoans\Index.cshtml" />
     <Content Include="Views\OpenLoans\New.cshtml" />
@@ -576,10 +578,14 @@
     <Content Include="wwwroot\lib\jquery-validation\LICENSE.md" />
     <Content Include="wwwroot\lib\jquery\.bower.json" />
     <Content Include="wwwroot\lib\jquery\dist\jquery.min.map" />
-    <Content Include="Views\Deposits\Index.cshtml" />
+    <Content Include="Views\Deposits\List.cshtml" />
     <Content Include="Views\Deposits\DepositForm.cshtml" />
     <Content Include="Views\OpenDeposits\Index.cshtml" />
     <Content Include="Views\OpenDeposits\New.cshtml" />
+    <Content Include="Views\Clients\ReadOnlyList.cshtml" />
+    <Content Include="Views\Deposits\ReadOnlyList.cshtml" />
+    <Content Include="Views\Loans\ReadOnlyList.cshtml" />
+    <Content Include="Views\Managers\ReadOnlyList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -621,6 +627,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806051903538_openDeposit.resx">
       <DependentUpon>201806051903538_openDeposit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806061744064_SeedUsers.resx">
+      <DependentUpon>201806061744064_SeedUsers.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

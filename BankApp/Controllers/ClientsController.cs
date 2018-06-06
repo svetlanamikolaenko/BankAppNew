@@ -21,17 +21,9 @@ namespace BankApp.Controllers
 
         public ViewResult Index()
         {
-            return View();
-        }
-
-        public ActionResult Details(int id)
-        {
-            var client = _context.Clients.SingleOrDefault(c => c.Id == id);
-
-            if (client == null)
-                return HttpNotFound();
-
-            return View(client);
+            if (User.IsInRole("Administrator"))
+                return View("List");
+            return View("ReadOnlyList");
         }
 
         public ActionResult New()

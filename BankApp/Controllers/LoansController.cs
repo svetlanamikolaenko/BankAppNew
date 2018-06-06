@@ -25,10 +25,10 @@ namespace BankApp.Controllers
 
         public ViewResult Index()
         {
-            return View();
+            if (User.IsInRole("Administrator"))
+                return View("List");
+            return View("ReadOnlyList");
         }
-
-        
 
         public ActionResult New()
         {

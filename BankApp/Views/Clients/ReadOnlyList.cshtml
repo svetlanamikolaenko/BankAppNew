@@ -1,0 +1,42 @@
+﻿@model IEnumerable<BankApp.Models.Client>
+@{
+    ViewBag.Title = "Clients";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Clients</h2>
+<a class="btn btn-primary" href="/Clients/New" role="button">New Client</a>
+<br>
+<br>
+<table id="clients" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Client</th>
+            <th>Manager</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            var table = $("#clients").DataTable({
+                ajax: {
+                    url: "/api/clients",
+                    dataSrc: ""
+                },
+                columns: [
+                    {
+                        data: "fullName",
+                        render: function (data, type, client) {
+                            return "<a href='/clients/edit/" + client.id + "'>" + data + "</a>";
+                        }
+                    },
+                    {
+                        data: "manager.fullName"
+                    }
+                ]
+            });
+        });
+    </script>
+}

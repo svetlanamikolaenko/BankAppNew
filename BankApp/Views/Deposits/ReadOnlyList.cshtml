@@ -4,8 +4,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <h2>Deposits</h2>
-<a class="btn btn-primary" href="/Deposits/New" role="button">New Deposit</a>
-<br>
 <br>
 <table id="deposits" class="table table-bordered table-hover">
     <thead>
@@ -28,10 +26,7 @@
                 },
                 columns: [
                     {
-                        data: "name",
-                        render: function (data, type, deposit) {
-                            return "<a href='/deposits/edit/" + deposit.id + "'>" + data + "</a>";
-                        }
+                        data: "name"
                     },
                     {
                         data: "period"

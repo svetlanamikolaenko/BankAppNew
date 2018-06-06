@@ -25,19 +25,12 @@ namespace BankApp.Controllers
 
         public ViewResult Index()
         {
-            return View();
+            if (User.IsInRole("Administrator"))
+                return View("List");
+            return View("ReadOnlyList");
         }
 
-        public ActionResult Details(int id)
-        {
-            var manager = _context.Managers.SingleOrDefault(c => c.Id == id);
-
-            if (manager == null)
-                return HttpNotFound();
-
-            return View(manager);
-        }
-
+        [Authorize(Roles = "Administrator")]
         public ActionResult New()
         {
             var role = _context.Roles.ToList();

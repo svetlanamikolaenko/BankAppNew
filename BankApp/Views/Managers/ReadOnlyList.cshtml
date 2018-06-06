@@ -1,0 +1,37 @@
+﻿@model IEnumerable<BankApp.Models.Manager>
+@{
+    ViewBag.Title = "Managers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Managers</h2>
+<br>
+<table id="managers" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Manager</th>
+            <th>Role</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            var table = $("#managers").DataTable({
+                ajax: {
+                    url: "/api/managers",
+                    dataSrc: ""
+                },
+                columns: [
+                    {
+                        data: "fullName"
+                    },
+                    {
+                        data: "role.name"
+                    }
+                ]
+            });
+        });
+    </script>
+}
